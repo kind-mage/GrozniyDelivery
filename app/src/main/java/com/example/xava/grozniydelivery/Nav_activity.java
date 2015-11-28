@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.xava.grozniydelivery.products.Products;
+
 import java.util.ArrayList;
 
 public class Nav_activity extends AppCompatActivity
@@ -119,7 +121,7 @@ ListView lvEat;
             startActivity(new Intent(this,Nav_activity.class));
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            startActivity(new Intent(this,Products.class));
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
