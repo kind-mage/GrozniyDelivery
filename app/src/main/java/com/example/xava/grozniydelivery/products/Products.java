@@ -17,8 +17,8 @@ ListView lvProducts;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
-        int[] imageList = new int[]{R.drawable.ic_restuarants,R.drawable.ic_japan_eating,R.drawable.ic_shashlik,
-        R.drawable.ic_burgers,R.drawable.ic_pizza,R.drawable.ic_torts,R.drawable.ic_vegetables};
+        int[] imageList = new int[]{R.drawable.ic_fruits,R.drawable.ic_drinks,R.drawable.ic_food,
+        R.drawable.ic_vegetables};
 
         lvProducts = (ListView)findViewById(R.id.lvProducts);
         ArrayList<ImageItem> items = new ArrayList<ImageItem>();
