@@ -31,7 +31,7 @@ ListView lvEat;
         setSupportActionBar(toolbar);
 
         int [] imageList = new int[]{R.drawable.ic_restuarants,R.drawable.ic_pizza,
-                R.drawable.ic_shashlik,R.drawable.ic_burgers,R.drawable.ic_japan_eating,R.drawable.ic_vegetables,R.drawable.ic_torts};
+                R.drawable.ic_shashlik,R.drawable.ic_burgers,R.drawable.ic_japan_eating,R.drawable.ic_torts};
 
 
 
