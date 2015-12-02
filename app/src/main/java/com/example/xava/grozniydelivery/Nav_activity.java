@@ -1,9 +1,14 @@
 package com.example.xava.grozniydelivery;
 
-import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,52 +18,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
+
+import com.example.xava.grozniydelivery.eating.Eat;
 import com.example.xava.grozniydelivery.products.Products;
 
 import java.util.ArrayList;
 
 public class Nav_activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-ListView lvEat;
+
+    private Fragment fragment;
+    private FragmentTransaction fTrans;
+    private FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        int [] imageList = new int[]{R.drawable.ic_restuarants,R.drawable.ic_pizza,
-                R.drawable.ic_shashlik,R.drawable.ic_burgers,R.drawable.ic_japan_eating,R.drawable.ic_torts};
-
-
-
-        lvEat = (ListView)findViewById(R.id.lvEat);
-        ArrayList<ImageItem> items = new ArrayList<ImageItem>();
-        ImageAdapter adapter = new ImageAdapter(this,items);
-        lvEat.setAdapter(adapter);
-
-
-        for(int i = 0; i< imageList.length; i++){
-
-
-            ImageItem newImage = new ImageItem(imageList[i]);
-            adapter.add(newImage);
-
-        }
-        lvEat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i) {
-                    case 0:
-                        startActivity(new Intent(view.getContext(), AllRestuarants.class));
-                        break;
-                }
-            }
-        });
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +56,14 @@ ListView lvEat;
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
 
+        fragment = new Eat();
+        fTrans = getSupportFragmentManager().beginTransaction();
+        fTrans.replace(R.id.content_frame, fragment);
+        fTrans.commit();
+
+
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -117,11 +102,21 @@ ListView lvEat;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.nav_kitchen) {
-            startActivity(new Intent(this,Nav_activity.class));
-            // Handle the camera action
+            fragment = new Eat();
+fTrans = getSupportFragmentManager().beginTransaction();
+        fTrans.replace(R.id.content_frame,fragment );
+            fTrans.commit();
+          //  startActivity(new Intent(this,Eat.class));
+
         } else if (id == R.id.nav_products) {
-            startActivity(new Intent(this,Products.class));
+            fragment = new Products();
+            fTrans = getSupportFragmentManager().beginTransaction();
+            fTrans.replace(R.id.content_frame,fragment );
+            fTrans.commit();
+
+           /// startActivity(new Intent(this,Products.class));
         } else if (id == R.id.nav_shares) {
 
         } else if (id == R.id.nav_story) {
@@ -132,8 +127,15 @@ ListView lvEat;
 
         }
 
+
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }
